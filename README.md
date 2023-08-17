@@ -33,7 +33,6 @@ has_many :purchase_records
 
 belongs_to :user
 has_one :purchase_record
-has_one :shipping_address
 
 
 ## shipping_addresses
@@ -43,24 +42,23 @@ has_one :shipping_address
 |prefecture_id      |integer   |null: false                   |
 |city               |string    |null: false                   |
 |address            |string    |null: false                   |
-|building_name      |string    |null: false                   |
+|building_name      |string    |                              |
 |phone_name         |string    |null: false                   |
-|purchase_records   |references|null: false, foreign_key: true|
+|purchase_record    |references|null: false, foreign_key: true|
 
 ### Association
 
-belongs_to :product
-has_one :purchase_record
+belongs_to :purchase_record
 
 
 ## purchase_records
 
 |Column             |Type|Options                             |
-|product_id         |integer   |null: false, foreign_key: true|
+|product            |references|null: false, foreign_key: true|
 |user               |references|null: false, foreign_key: true|
 
 ### Association
 
 belongs_to :user
 belongs_to :product
-belongs_to :shipping_address
+has_one :shipping_address
