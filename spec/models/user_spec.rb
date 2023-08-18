@@ -49,7 +49,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
       it 'passwordが数字だけだと登録できない' do
-        @user.password ='000000'
+        @user.password = '000000'
         @user.password_confirmation = '000000'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
@@ -68,12 +68,12 @@ RSpec.describe User, type: :model do
       end
       it 'passwordとconfirmが一致していないと登録できない' do
         @user.password = 'test123'
-        @user.password_confirmation ='test1234'
+        @user.password_confirmation = 'test1234'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
       it 'passwordが英数字混合でも6文字未満なら登録できない' do
-        @user.password ='test1'
+        @user.password = 'test1'
         @user.password_confirmation = 'test1'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
@@ -136,5 +136,5 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Birth day can't be blank")
       end
     end
-  end  
+  end
 end
