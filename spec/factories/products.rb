@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :product do
-    product_name    { "テスト題名" }
-    description     { "テスト説明文" }
+    product_name    { 'テスト題名' }
+    description     { 'テスト説明文' }
     category_id     { Faker::Number.between(from: 2, to: 11) }
     condition_id    { Faker::Number.between(from: 2, to: 7) }
     cost_id         { Faker::Number.between(from: 2, to: 3) }
