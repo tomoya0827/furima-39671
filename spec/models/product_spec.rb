@@ -25,27 +25,27 @@ RSpec.describe Product, type: :model do
       expect(@product.errors.full_messages).to include("Description can't be blank")
     end
     it 'category_idが空では登録できない' do
-      @product.category_id = ''
+      @product.category_id = 1
       @product.valid?
       expect(@product.errors.full_messages).to include("Category can't be blank")
     end
     it 'condition_idが空では登録できない' do
-      @product.condition_id = ''
+      @product.condition_id = 1
       @product.valid?
       expect(@product.errors.full_messages).to include("Condition can't be blank")
     end
     it 'cost_idが空では登録できない' do
-      @product.cost_id = ''
+      @product.cost_id = 1
       @product.valid?
       expect(@product.errors.full_messages).to include("Cost can't be blank")
     end
     it 'prefecture_idが空では登録できない' do
-      @product.prefecture_id = ''
+      @product.prefecture_id = 1
       @product.valid?
       expect(@product.errors.full_messages).to include("Prefecture can't be blank")
     end
     it 'delivery_day_idが空では登録できない' do
-      @product.delivery_day_id = ''
+      @product.delivery_day_id = 1
       @product.valid?
       expect(@product.errors.full_messages).to include("Delivery day can't be blank")
     end
@@ -68,6 +68,11 @@ RSpec.describe Product, type: :model do
       @product.price = 'a'
       @product.valid?
       expect(@product.errors.full_messages).to include("Price is not a number")
+    end
+    it 'userが紐付いていなければ出品できない' do
+      @product.user = nil
+      @product.valid?
+      expect(@product.errors.full_messages).to include("User must exist")
     end
   end
 end

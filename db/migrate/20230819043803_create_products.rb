@@ -1,7 +1,7 @@
 class CreateProducts < ActiveRecord::Migration[7.0]
   def change
     create_table :products do |t|
-      t.string :product_name
+      t.string :product_name, null: false
       t.text :description, null: false
       t.integer :category_id, null: false
       t.integer :condition_id, null: false
