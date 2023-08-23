@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-       redirect_to root_path
+       redirect_to product_path
     else 
     render :edit, status: :unprocessable_entity
     end
