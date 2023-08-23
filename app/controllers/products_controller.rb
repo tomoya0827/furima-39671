@@ -30,9 +30,12 @@ class ProductsController < ApplicationController
   end
 
   def update
-    product = Product.find(params[:id])
-    product.update(product_params)
-    redirect_to root_path
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+       redirect_to root_path
+    else 
+    render :edit, status: :unprocessable_entity
+    end
   end
 
   private
