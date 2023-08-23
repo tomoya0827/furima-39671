@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, only: [:new, :edit]
   before_action :set_product, only: [:edit, :show, :update]
 
 
@@ -24,9 +24,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    if current_user.nil?
-      redirect_to new_user_session_path
-    elsif @product.user != current_user
+    if @product.user != current_user
       redirect_to root_path
     end
   end
