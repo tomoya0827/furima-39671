@@ -24,7 +24,9 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
-    if @product.user != current_user
+    if current_user.nil?
+      redirect_to new_user_session_path
+    elsif @product.user != current_user
       redirect_to root_path
     end
   end
