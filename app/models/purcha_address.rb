@@ -6,6 +6,6 @@ class PurchaAddress
     purchase_record = PurchaseRecord.create(product_id: product_id, user_id: user_id)
 
     ShippingAddress.create(post_code: post_code, prefecture_id: prefecture_id, city: city, address: address,building_name: building_name,
-       hone_name: phone_name, purchase_record: purchase_record, product_id: product_id)
+      phone_name: phone_name, purchase_record: purchase_record, product_id: product_id)
   end
 end
