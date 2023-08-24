@@ -9,7 +9,7 @@ class PurchaAddress
     validates :city
     validates :address
     validates :phone_name, presence: true, length: { in: 10..11 }, numericality: { only_integer: true }
-    validates :purchase_record
+    
   end
     validates :prefecture_id, numericality: {other_than: 0, message: "can't be blank"}
 
