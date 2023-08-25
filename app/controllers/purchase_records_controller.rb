@@ -27,7 +27,7 @@ class PurchaseRecordsController < ApplicationController
 
   def check_seller
     product = Product.find(params[:product_id])
-    if current_user == product.user
+    if product.purchase_record
       redirect_to root_path
     end
   end
