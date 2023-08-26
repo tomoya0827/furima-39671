@@ -11,7 +11,7 @@ class PurchaAddress
     validates :phone_name, length: { in: 10..11 }, numericality: { only_integer: true }
     
   end
-    validates :prefecture_id, numericality: {other_than: 0, message: "can't be blank"}
+    validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
 
   def save
     purchase_record = PurchaseRecord.create(product_id: product_id, user_id: user_id)
