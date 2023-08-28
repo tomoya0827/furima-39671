@@ -1,16 +1,15 @@
 class PurchaseRecordsController < ApplicationController
   before_action :authenticate_user!, only: [:index]
+  before_action :load_product, only: [:index, :create]
   before_action :check_seller, only: [:index]
 
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-    @product = Product.find(params[:product_id])
     @purcha_address = PurchaAddress.new
   end
 
   def create
     @purcha_address = PurchaAddress.new(purchase_record_params)
-    @product = Product.find(params[:product_id])
     
     if @purcha_address.valid?
       pay_product
@@ -22,6 +21,10 @@ class PurchaseRecordsController < ApplicationController
   end
 
   private
+
+  def load_product
+    @product = Product.find(params[:product_id])
+  end
 
   def purchase_record_params
     params.require(:purcha_address).permit(:post_code, :prefecture_id, :city, :address, :building_name, :phone_name).merge(product_id: params[:product_id], user_id: current_user.id, token: params[:token])
