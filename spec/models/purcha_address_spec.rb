@@ -54,6 +54,11 @@ RSpec.describe PurchaAddress, type: :model do
         @purcha_address.valid?
         expect(@purcha_address.errors.full_messages).to include("Phone name is too short (minimum is 10 characters)")
       end
+      it 'phone_nameが12桁以上では保存できないこと' do
+        @purcha_address.phone_name = '123456789123'
+        @purcha_address.valid?
+        expect(@purcha_address.errors.full_messages).to include("Phone name is too long (maximum is 11 characters)")
+      end
       it 'phone_nameが半角数値のみしか保存できないこと' do
         @purcha_address.phone_name = '０９０１２３４５６７８'
         @purcha_address.valid?
