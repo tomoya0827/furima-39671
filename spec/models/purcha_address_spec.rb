@@ -3,7 +3,9 @@ require 'rails_helper'
 RSpec.describe PurchaAddress, type: :model do
   describe '購入情報の保存' do
     before do
-      @purcha_address = FactoryBot.build(:purcha_address)
+      @user = FactoryBot.create(:user)
+      @product = FactoryBot.create(:product)
+      @purcha_address = FactoryBot.build(:purcha_address, user_id: @user.id, product_id:@product.id)
     end
 
     context '内容に問題ない場合' do
